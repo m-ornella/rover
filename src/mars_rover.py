@@ -1,4 +1,4 @@
-from ..interfaces.i_rover import IRover
+from .rover_interface import IRover
 
 class MarsRover(IRover):
     DIRECTIONS = ['N', 'E', 'S', 'W']

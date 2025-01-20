@@ -1,5 +1,5 @@
-from rover.classes.mars_rover import MarsRover
-from rover.classes.toroidal_planet import ToroidalPlanet
+from src.mars_rover import MarsRover
+from src.toroidal_planet import ToroidalPlanet
 
 def main():
     width, height = 10, 10  # Taille de la planète
