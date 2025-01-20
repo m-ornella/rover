@@ -1,9 +1,10 @@
 from .rover_interface import IRover
+from .toroidal_planet import ToroidalPlanet
 
 class MarsRover(IRover):
     DIRECTIONS = ['N', 'E', 'S', 'W']
 
-    def __init__(self, x, y, direction, planet):
+    def __init__(self, x: int, y: int, direction: str, planet: ToroidalPlanet):
         self.x = x
         self.y = y
         self.direction = direction
