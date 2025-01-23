@@ -30,5 +30,11 @@ class TestMarsRover(unittest.TestCase):
         rover.move_forward()  # This should wrap around
         self.assertEqual(rover.get_state(), "Position: (9, 1), Orientation: N")
 
+    def test_obstacle_detection(self):
+        planet = ToroidalPlanet(10, 10, [(0, 1)])
+        rover = MarsRover(0, 0, 'N', planet)
+        rover.move_forward()
+        self.assertEqual(rover.get_state(), "Position: (0, 0), Orientation: N")
+        
 if __name__ == '__main__':
     unittest.main()
