@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class IObstacle(ABC):
     @abstractmethod
-    def get_position(self):
+    def is_at_position(self):
         pass
 
     @abstractmethod

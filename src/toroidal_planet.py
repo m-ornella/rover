@@ -11,11 +11,7 @@ class ToroidalPlanet():
         y %= self.__height
         return x, y
     
-    def is_obstacle(self, x: int, y: int):
-        return any(obstacle.get_position() == (x, y) for obstacle in self.obstacles)
-    
-    def display_obstacles(self):
-        for obstacle in self.obstacles:
-            print(obstacle)
+    def is_obstacle(self, x: int, y: int) -> bool:
+        return any(obstacle.is_at_position(x, y) for obstacle in self.obstacles)
     
     

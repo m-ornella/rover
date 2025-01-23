@@ -11,8 +11,6 @@ def main():
     planet = ToroidalPlanet(width, height, obstacles)
     rover = MarsRover(0,0, 'N', planet)
 
-    planet.display_obstacles()
-
     while True:
         commands = input("Entrez une séquence de commandes (F, B, L, R) ou 'Q' pour quitter: ").upper()
 
