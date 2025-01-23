@@ -4,17 +4,19 @@ from .orientation import Orientation
 
 class MarsRover(IRover):
 
-    def __init__(self, x: int, y: int, orientation: Orientation, planet: ToroidalPlanet):
+    def __init__(self, x: int, y: int, orientation: str, planet: ToroidalPlanet):
         self.x = x
         self.y = y
         self.orientation_handler = Orientation(orientation)
         self.planet = planet
 
     def move_forward(self):
-        self.orientation_handler.move_forward()
+        self.x, self.y = self.orientation_handler.move_forward(self.x, self.y)
+        self.x, self.y = self.planet.wrap_coordinates(self.x, self.y)
 
     def move_backward(self):
-        self.orientation_handler.move_backward()
+        self.x, self.y = self.orientation_handler.move_backward(self.x, self.y)
+        self.x, self.y = self.planet.wrap_coordinates(self.x, self.y)
 
     def turn_left(self):
         self.orientation_handler.turn_left()
@@ -23,4 +25,6 @@ class MarsRover(IRover):
         self.orientation_handler.turn_right()
 
     def get_state(self):
-        return f"Position: ({self.x}, {self.y}), Orientation: {self.orientation_handler}"
+        return f"Position: ({self.x}, {self.y}), Orientation: {self.orientation_handler.ORIENTATIONS[self.orientation_handler.current_index]}"
+
+
