@@ -3,10 +3,11 @@ from src.toroidal_planet import ToroidalPlanet
 
 def main():
     width, height = 10, 10  # Taille de la planète
-    planet = ToroidalPlanet(width, height)
-    rover = MarsRover(0, 0, 'N', planet)
+    obstacles = {(0,2),(4,2)}
+    planet = ToroidalPlanet(width, height, obstacles)
+    rover = MarsRover(0,0, 'N', planet)
 
-    commands = "FFFFFFFFFFFFLBBBBBBBBBBBBB"
+    commands = "FFFF"
     
     for command in commands:
         if command == 'F':

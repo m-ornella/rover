@@ -1,4 +1,4 @@
-class Orientation:
+class Movement:
     ORIENTATIONS = ['N', 'E', 'S', 'W']
     MOVEMENTS = {
         'N': (0, 1),
