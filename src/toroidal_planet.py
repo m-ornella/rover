@@ -1,3 +1,5 @@
+from .obstacle import Obstacle
+
 class ToroidalPlanet():
     def __init__(self, width: int, height: int, obstacles=None):
         self.__width = width
@@ -9,7 +11,11 @@ class ToroidalPlanet():
         y %= self.__height
         return x, y
     
-    def is_obstacle(self, x:int, y: int):
-        return (x,y) in self.obstacles
+    def is_obstacle(self, x: int, y: int):
+        return any(obstacle.get_position() == (x, y) for obstacle in self.obstacles)
+    
+    def display_obstacles(self):
+        for obstacle in self.obstacles:
+            print(obstacle)
     
     

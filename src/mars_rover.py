@@ -11,7 +11,7 @@ class MarsRover(IRover):
 
     def _try_move(self, new_x, new_y):
         if self.planet.is_obstacle(new_x, new_y):
-            print(f"Rover bloqué aux coordonnées: ({self.x}, {self.y})")
+            print(f"!!! Rover bloqué aux coordonnées: ({self.x}, {self.y}) !!!")
         else:
             self.x, self.y = new_x, new_y
 
