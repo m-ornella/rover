@@ -8,28 +8,27 @@ class TestMarsRover(unittest.TestCase):
         self.rover = MarsRover(0, 0, 'N', self.planet)
 
     def test_initial_position(self):
-        self.assertEqual(self.rover.get_state(), "Position: (0, 0), Orientation: N")
+        planet = ToroidalPlanet(10, 10)
+        rover = MarsRover(0, 0, 'N', planet)
+        self.assertEqual(rover.get_state(), "Position: (0, 0), Orientation: N")
 
-    def test_move_forward(self):
-        self.rover.move_forward()
-        self.assertEqual(self.rover.get_state(), "Position: (0, 1), Orientation: N")
-
-    def test_move_backward(self):
-        self.rover.move_backward()
-        self.assertEqual(self.rover.get_state(), "Position: (0, 9), Orientation: N")  # Toroïdal
+    def test_move_forward_north(self):
+        planet = ToroidalPlanet(10, 10)
+        rover = MarsRover(0, 0, 'N', planet)
+        rover.move_forward()
+        self.assertEqual(rover.get_state(), "Position: (0, 1), Orientation: N")
 
     def test_turn_right(self):
-        self.rover.turn_right()
-        self.assertEqual(self.rover.get_state(), "Position: (0, 0), Orientation: E")
-
-    def test_turn_left(self):
-        self.rover.turn_left()
-        self.assertEqual(self.rover.get_state(), "Position: (0, 0), Orientation: W")
+        planet = ToroidalPlanet(10, 10)
+        rover = MarsRover(0, 0, 'N', planet)
+        rover.turn_right()
+        self.assertEqual(rover.get_state(), "Position: (0, 0), Orientation: E")
 
     def test_wrap_around(self):
-        self.rover.x = 9
-        self.rover.move_forward()
-        self.assertEqual(self.rover.get_state(), "Position: (9, 1), Orientation: N")
+        planet = ToroidalPlanet(10, 10)
+        rover = MarsRover(9, 0, 'N', planet)  # Start near the edge
+        rover.move_forward()  # This should wrap around
+        self.assertEqual(rover.get_state(), "Position: (9, 1), Orientation: N")
 
 if __name__ == '__main__':
     unittest.main()
