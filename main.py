@@ -1,16 +1,12 @@
 from src.mars_rover import MarsRover
 from src.toroidal_planet import ToroidalPlanet
-from src.orientation import Orientation
 
 def main():
     width, height = 10, 10  # Taille de la planète
     planet = ToroidalPlanet(width, height)
+    rover = MarsRover(0, 0, 'N', planet)
 
-    initial_orientation = Orientation(Orientation.ORIENTATIONS[0])
-
-    rover = MarsRover(0, 0, initial_orientation, planet)
-
-    commands = "FBRL"
+    commands = "FFFFFFFFFFFFLBBBBBBBBBBBBB"
     
     for command in commands:
         if command == 'F':
