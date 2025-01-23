@@ -1,6 +1,7 @@
 import unittest
 from src.mars_rover import MarsRover
 from src.toroidal_planet import ToroidalPlanet
+from .orientation import Orientation
 
 class TestMarsRover(unittest.TestCase):
 

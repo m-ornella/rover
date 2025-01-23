@@ -1,42 +1,26 @@
 from .rover_interface import IRover
 from .toroidal_planet import ToroidalPlanet
+from .orientation import Orientation
 
 class MarsRover(IRover):
-    DIRECTIONS = ['N', 'E', 'S', 'W']
 
-    def __init__(self, x: int, y: int, direction: str, planet: ToroidalPlanet):
+    def __init__(self, x: int, y: int, orientation: Orientation, planet: ToroidalPlanet):
         self.x = x
         self.y = y
-        self.direction = direction
+        self.orientation_handler = Orientation(orientation)
         self.planet = planet
 
     def move_forward(self):
-        if self.direction == 'N':
-            self.y += 1
-        elif self.direction == 'S':
-            self.y -= 1
-        elif self.direction == 'E':
-            self.x += 1
-        elif self.direction == 'W':
-            self.x -= 1
-        self.x, self.y = self.planet.wrap_coordinates(self.x, self.y)
+        self.orientation_handler.move_forward()
 
     def move_backward(self):
-        if self.direction == 'N':
-            self.y -= 1
-        elif self.direction == 'S':
-            self.y += 1
-        elif self.direction == 'E':
-            self.x -= 1
-        elif self.direction == 'W':
-            self.x += 1
-        self.x, self.y = self.planet.wrap_coordinates(self.x, self.y)
+        self.orientation_handler.move_backward()
 
     def turn_left(self):
-        self.direction = self.DIRECTIONS[(self.DIRECTIONS.index(self.direction) - 1) % 4]
+        self.orientation_handler.turn_left()
 
     def turn_right(self):
-        self.direction = self.DIRECTIONS[(self.DIRECTIONS.index(self.direction) + 1) % 4]
+        self.orientation_handler.turn_right()
 
     def get_state(self):
-        return f"Position: ({self.x}, {self.y}), Direction: {self.direction}"
+        return f"Position: ({self.x}, {self.y}), Orientation: {self.orientation_handler}"
