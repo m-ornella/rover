@@ -3,8 +3,8 @@ from src.mars_rover import MarsRover
 from src.toroidal_planet import ToroidalPlanet
 
 class TestMarsRover(unittest.TestCase):
-    def setUp(self):
-        self.planet = ToroidalPlanet(10, 10)
+    def setUp(self): # TODO : Jamais appelé
+        self.planet = ToroidalPlanet(10, 10) # TODO : Pourquoi 10 et pas 63 ?
         self.rover = MarsRover(0, 0, 'N', self.planet)
 
     def test_initial_position(self):
