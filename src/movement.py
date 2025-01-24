@@ -10,7 +10,7 @@ class Movement:
     def __init__(self, initial_orientation: str):
         if initial_orientation not in self.ORIENTATIONS:
             raise ValueError(f"Invalid orientation: {initial_orientation}. Must be one of {self.ORIENTATIONS}.")
-        self.current_index = self.ORIENTATIONS.index(initial_orientation)
+        self.current_index = self.ORIENTATIONS.index(initial_orientation) # TODO : Objet valeur mutable ?
 
     def move_forward(self, x, y):
         dx, dy = self.MOVEMENTS[self.get_current_orientation()]
@@ -20,7 +20,7 @@ class Movement:
         dx, dy = self.MOVEMENTS[self.get_current_orientation()]
         return x - dx, y - dy
 
-    def turn_left(self):
+    def turn_left(self): #TODO : vocabulaire. La droite du nord ?
         self.current_index = (self.current_index - 1) % len(self.ORIENTATIONS)
 
     def turn_right(self):
