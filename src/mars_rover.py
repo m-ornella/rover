@@ -2,7 +2,9 @@ from .rover_interface import IRover
 from .toroidal_planet import ToroidalPlanet
 from .movement import Movement
 
+# TODO : nommage à revoir
 class MarsRover(IRover):
+    # TODO : orientation typage dangereux
     def __init__(self, x: int, y: int, orientation: str, planet: ToroidalPlanet):
         self.x = x
         self.y = y
@@ -11,7 +13,7 @@ class MarsRover(IRover):
 
     def _try_move(self, new_x, new_y):
         if self.planet.is_obstacle(new_x, new_y):
-            print(f"!!! Rover bloqué aux coordonnées: ({self.x}, {self.y}) !!!")
+            print(f"!!! Rover bloqué aux coordonnées: ({self.x}, {self.y}) !!!") # TODO : mélange des genres entre log et logique
         else:
             self.x, self.y = new_x, new_y
 
