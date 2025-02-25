@@ -1,4 +1,4 @@
-from mars_rover import CommunicationServerAbstract
+from mars_rover.communication_server_interface import CommunicationServerAbstract
 from network.socket_server import SocketServer  # Importer ton fichier réseau
 
 

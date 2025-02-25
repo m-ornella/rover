@@ -1,4 +1,4 @@
-from ..mars_rover import CommunicationServerAbstract
+from ..mars_rover.communication_server_interface import CommunicationServerAbstract
 import socket
 import threading
 
