@@ -1,22 +1,18 @@
-from abc import ABC, abstractmethod
+# communication_interface.py
+import abc
 
-class CommunicationInterface(ABC):
-    @abstractmethod
+class CommunicationInterface(abc.ABC):
+    @abc.abstractmethod
+    def register_on_message_receive_callback(self, callback):
+        """Enregistre un callback appelé lors de la réception d'un message."""
+        pass
+
+    @abc.abstractmethod
     def start(self):
         """Démarre le service de communication."""
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def send_message(self, message: str):
-        """Envoie un message."""
-        pass
-
-    @abstractmethod
-    def receive_message(self) -> str:
-        """Reçoit un message."""
-        pass
-
-    @abstractmethod
-    def register_callback(self, callback):
-        """Enregistre une fonction de rappel pour les messages reçus."""
+        """Envoie un message à l'autre partie."""
         pass
