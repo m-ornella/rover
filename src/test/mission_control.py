@@ -1,9 +1,10 @@
 # mission_control.py
-from socket_communication import SocketClient
+from communication_interface import CommunicationInterface
+from communication_factory import create_communication
 import time
 
 class MissionControl:
-    def __init__(self, communication):
+    def __init__(self, communication: CommunicationInterface):
         self.communication = communication
         self.communication.register_on_message_receive_callback(self.receive_response)
 
@@ -18,7 +19,7 @@ class MissionControl:
         self.communication.start()
 
 if __name__ == "__main__":
-    communication = SocketClient()
+    communication = create_communication(role='client')
     mission_control = MissionControl(communication)
     mission_control.start()
 
@@ -27,5 +28,3 @@ if __name__ == "__main__":
     mission_control.send_command("Avancer")
     time.sleep(1)
     mission_control.send_command("Tourner à gauche")
-   
- 

@@ -1,8 +1,9 @@
 # rover_server.py
-from socket_communication import SocketServer
+from communication_interface import CommunicationInterface
+from communication_factory import create_communication
 
 class RoverServer:
-    def __init__(self, communication):
+    def __init__(self, communication: CommunicationInterface):
         self.communication = communication
         self.communication.register_on_message_receive_callback(self.process_command)
 
@@ -15,6 +16,6 @@ class RoverServer:
         self.communication.start()
 
 if __name__ == "__main__":
-    communication = SocketServer()
+    communication = create_communication(role='server')
     rover_server = RoverServer(communication)
     rover_server.start()
