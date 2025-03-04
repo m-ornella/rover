@@ -1,4 +1,4 @@
-from src.mars_rover.rover_interface import IRover
+from src.interface.rover_interface import IRover
 from src.toroidal_planet.toroidal_planet import ToroidalPlanet
 from src.mars_rover.movement import Movement
 

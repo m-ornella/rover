@@ -1,5 +1,5 @@
-from src.mars_rover.communication_server_interface import CommunicationServerInterface
-from src.mars_rover.rover_interface import IRover
+from src.interface.communication_server_interface import CommunicationServerInterface
+from src.interface.rover_interface import IRover
 
 class RoverServer:
     def __init__(self, communication: CommunicationServerInterface, rover: IRover):

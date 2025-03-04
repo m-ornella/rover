@@ -1,5 +1,5 @@
 import threading
-from src.mars_rover.communication_server_interface import CommunicationServerInterface
+from src.interface.communication_server_interface import CommunicationServerInterface
 
 class MissionControl:
     def __init__(self, communication: CommunicationServerInterface):

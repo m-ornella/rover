@@ -1,4 +1,4 @@
-from src.toroidal_planet.obstacle import Obstacle
+# from src.toroidal_planet.obstacle import Obstacle
 
 class ToroidalPlanet():
     def __init__(self, width: int, height: int, obstacles=None):

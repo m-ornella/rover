@@ -1,6 +1,5 @@
-from src.toroidal_planet.obstacle_interface import IObstacle
 
-class Obstacle(IObstacle):
+class Obstacle():
     def __init__(self, __x: int, __y: int, __description: str):
         self.__x = __x
         self.__y = __y
