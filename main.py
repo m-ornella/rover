@@ -1,6 +1,6 @@
-from src.mars_rover import MarsRover
-from src.toroidal_planet import ToroidalPlanet
-from src.obstacle import Obstacle
+from rover.mars_rover import MarsRover
+from toroidal_planet.toroidal_planet import ToroidalPlanet
+from toroidal_planet.obstacle import Obstacle
 
 def main():
     width, height = 10, 10

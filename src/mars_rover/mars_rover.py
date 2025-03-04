@@ -1,5 +1,5 @@
 from .rover_interface import IRover
-from .toroidal_planet import ToroidalPlanet
+from ..toroidal_planet.toroidal_planet import ToroidalPlanet
 from .movement import Movement
 
 class MarsRover(IRover):
