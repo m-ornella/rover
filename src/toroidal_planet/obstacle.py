@@ -1,4 +1,4 @@
-from .obstacle_interface import IObstacle
+from src.toroidal_planet.obstacle_interface import IObstacle
 
 class Obstacle(IObstacle):
     def __init__(self, __x: int, __y: int, __description: str):

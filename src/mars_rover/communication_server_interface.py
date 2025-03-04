@@ -1,17 +1,35 @@
-import abc
+from typing import Protocol
 
-class CommunicationServerAbstract(abc.ABC):
-    @abc.abstractmethod
-    def register_on_message_receive_callback(self, on_message_received):
-        """Enregistre un callback appelé lorsqu'un message est reçu."""
+class CommunicationServerInterface(Protocol):
+    def connect(self, host: str, port: int) -> None:
+        """
+        Établit une connexion en tant que client ou démarre un serveur.
+        
+        :param host: Adresse IP ou hostname.
+        :param port: Port utilisé pour la communication.
+        """
         pass
 
-    @abc.abstractmethod
-    def start(self):
-        """Démarre le serveur de communication."""
+    def disconnect(self) -> None:
+        """
+        Ferme proprement la connexion au serveur ou arrête le serveur.
+        """
         pass
 
-    @abc.abstractmethod
-    def send_message(self, message: str):
-        """Envoie un message au client."""
+    def send_message(self, recipient: str, message: str) -> None:
+        """
+        Envoie un message à un destinataire spécifique.
+        
+        :param recipient: Identifiant du destinataire (ex: "rover" ou "mission_control").
+        :param message: Contenu du message à envoyer.
+        """
+        pass
+
+    def receive_message(self, sender: str) -> str:
+        """
+        Reçoit un message d'un expéditeur spécifique.
+        
+        :param sender: Identifiant de l'expéditeur (ex: "rover" ou "mission_control").
+        :return: Contenu du message reçu.
+        """
         pass

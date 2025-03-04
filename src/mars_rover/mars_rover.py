@@ -1,6 +1,6 @@
-from .rover_interface import IRover
-from .toroidal_planet import ToroidalPlanet
-from .movement import Movement
+from src.mars_rover.rover_interface import IRover
+from src.toroidal_planet.toroidal_planet import ToroidalPlanet
+from src.mars_rover.movement import Movement
 
 # TODO : nommage à revoir
 class MarsRover(IRover):
