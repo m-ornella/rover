@@ -5,7 +5,7 @@ class RoverServer:
     def __init__(self, communication: CommunicationServerInterface, rover: IRover):
         self.communication = communication
         self.rover = rover
-        
+
     def start(self):
         print("[Rover] Démarrage du serveur...")
         self.communication.connect()
@@ -15,11 +15,11 @@ class RoverServer:
         """
         Traite une commande reçue et renvoie la position du Rover.
         """
-        print(f"[Rover] Commande reçue: {message}")
-
+        
+        message = message.strip().upper()
         # Vérifie quelle commande a été envoyée
-        command = message.strip().upper()
-
+        command = message[-1]
+        print(f"{command}")
         if command == "F":
             self.rover.move_forward()
         elif command == "B":
