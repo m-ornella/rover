@@ -8,7 +8,6 @@ class SocketNetwork(CommunicationServerInterface):
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connection = None  # Pour stocker la connexion côté serveur
-        self.running = True  # Flag pour arrêter l'écoute
 
     def connect(self, host: str = None, port: int = None) -> None:
         if self.is_server:
@@ -22,7 +21,6 @@ class SocketNetwork(CommunicationServerInterface):
             print(f"[Client] Connecté à {host or self.host}:{port or self.port}")
 
     def disconnect(self) -> None:
-        self.running = False  # Permet d'arrêter l'écoute
         if self.is_server and self.connection:
             self.connection.close()
         self.socket.close()
@@ -36,7 +34,10 @@ class SocketNetwork(CommunicationServerInterface):
             self.socket.sendall(data)
         print(f"[Socket] Message envoyé: {message}")
 
-    def receive_message(self, sender: str) -> str:
+    def receive_message(self) -> str:
+        """
+        Attend de recevoir un message et le retourne.
+        """
         if self.is_server and self.connection:
             data = self.connection.recv(1024).decode()
         else:
@@ -44,15 +45,14 @@ class SocketNetwork(CommunicationServerInterface):
         print(f"[Socket] Message reçu: {data}")
         return data
 
-    def listen_for_messages(self, callback) -> None:
+    def listen_for_messages(self, callback):
         """
-        Écoute les messages et exécute un callback sur chaque message reçu.
+        Écoute les messages entrants et appelle `callback(message)` pour les traiter.
         """
         print("[Socket] En attente de messages...")
-        while self.running:
-            message = self.receive_message("mission_control")
+        while True:
+            message = self.receive_message()
+            callback(message)
             if message.lower() == "shutdown":
-                print("[Socket] Arrêt du serveur demandé.")
-                self.disconnect()
                 break
-            callback(message)  # Exécute la fonction callback sur le message reçu
+        self.disconnect()

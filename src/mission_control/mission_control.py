@@ -7,11 +7,18 @@ class MissionControl:
     def start(self):
         print("[Mission Control] Connexion au rover...")
         self.communication.connect()
+
+        def handle_message(message):
+            print(f"[Mission Control] Réponse du rover: {message}")
+
         while True:
             command = input("Entrez une commande pour le rover: ")
             self.communication.send_message("rover", command)
-            if command.lower() == "shutdown":
+            if command.lower() == "q":
                 print("[Mission Control] Fermeture de la connexion.")
                 break
-        self.communication.disconnect()
 
+            # Écoute la réponse du rover après chaque commande
+            self.communication.listen_for_messages(handle_message)
+
+        self.communication.disconnect()
