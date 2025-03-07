@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+#Personal
+reponse_es/
+tests/
+src/test/
+améliorations.txt
